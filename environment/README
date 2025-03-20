@@ -6,6 +6,11 @@
 
    $ curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
    $ bash Miniconda3-latest-MacOSX-arm64.sh
+      - say yes to prompts when asked
+   $ conda config --set auto_activate_base true
+   $ conda config --add channels defaults
+   $ conda config --add channels conda-forge
+   $ conda config --set channel_priority strict
    $ rm -f Miniconda3-latest-MacOSX-arm64.sh
 
    -- Instructions for Windows and Linux are also available on the website
@@ -13,17 +18,14 @@
 2. In your (base) environment, install jupyter (or jupyter and mamba; not sure what
    is installed by default)
 
-   $ mamba install jupyterlab
-
-or
-
   $ conda install mamba jupyterlab
+     - say yes when prompted to proceed
 
 3. Install the (alaska) environment with
 
 (base) $ mamba env create -f environment.yml
 
-2. Run jupyter with
+4. Run jupyter with
 
 (base) $ jupyter lab
 

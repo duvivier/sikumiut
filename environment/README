@@ -1,0 +1,46 @@
+1. Install miniconda: https://www.anaconda.com/docs/getting-started/miniconda/install
+
+   -- MacOS instructions (assuming "Apple Silicon": click apple menu and "About this Mac"
+      to verify the chip is made by Apple; if made by Intel, go to website and follow the
+      Intel directions... should just be a different Miniconda3-latest file)
+
+   $ curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
+   $ bash Miniconda3-latest-MacOSX-arm64.sh
+   $ rm -f Miniconda3-latest-MacOSX-arm64.sh
+
+   -- Instructions for Windows and Linux are also available on the website
+
+2. In your (base) environment, install jupyter (or jupyter and mamba; not sure what
+   is installed by default)
+
+   $ mamba install jupyterlab
+
+or
+
+  $ conda install mamba jupyterlab
+
+3. Install the (alaska) environment with
+
+(base) $ mamba env create -f environment.yml
+
+2. Run jupyter with
+
+(base) $ jupyter lab
+
+NOTES:
+
+* You can choose a better name for the environment by editing the first line of
+  environment.yml before running mamba
+
+* You may want to pin a specific version of python; when I created this environment it used
+  python 3.13, but if you were testing your notebooks with an older version you may be in
+  for surprises
+
+* The file browser in jupyter will use whatever directory you ran "jupyter lab" from as
+  the root directory. You may want to do something like
+
+  (base) $ cd /path/to/notebooks
+  (base) $ jupyter lab
+
+* Since we added ipykernel to the (alaska) environment, it should be usable from jupyter
+  even though jupyter was launched from the (base) environment

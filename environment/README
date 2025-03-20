@@ -26,7 +26,7 @@ Open a terminal program (terminal, iterm, etc.)
 
 4. If you have not already, clone this repository to your desktop. Then go to environment file
 
-   $ cd sikumiut/environment
+   $ cd sikumiut/cesm_activities
 
 5. Install the (alaska) environment with
 

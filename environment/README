@@ -24,13 +24,15 @@ Open a terminal program (terminal, iterm, etc.)
   $ conda install mamba jupyterlab
      - say yes when prompted to proceed
 
-4. go to the 
+4. If you have not already, clone this repository to your desktop. Then go to environment file
 
-3. Install the (alaska) environment with
+   $ cd sikumiut/environment
+
+5. Install the (alaska) environment with
 
 (base) $ mamba env create -f environment.yml
 
-4. Run jupyter with
+6. Run jupyter with
 
 (base) $ jupyter lab
 

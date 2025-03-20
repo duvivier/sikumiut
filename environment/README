@@ -1,3 +1,5 @@
+Open a terminal program (terminal, iterm, etc.)
+
 1. Install miniconda: https://www.anaconda.com/docs/getting-started/miniconda/install
 
    -- MacOS instructions (assuming "Apple Silicon": click apple menu and "About this Mac"
@@ -15,11 +17,14 @@
 
    -- Instructions for Windows and Linux are also available on the website
 
-2. In your (base) environment, install jupyter (or jupyter and mamba; not sure what
-   is installed by default)
+2. Quit your terminal program and reopen it. It should now open in the (base) environment.
+
+3. In your (base) environment, install jupyter
 
   $ conda install mamba jupyterlab
      - say yes when prompted to proceed
+
+4. go to the 
 
 3. Install the (alaska) environment with
 

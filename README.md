@@ -48,6 +48,12 @@ conda install mamba jupyterlab
 4. If you have not already, clone this GitHub repository to your desktop. Then go to the directory that holds the environment file
    
 ```
+cd Desktop
+```
+```
+git clone https://github.com/duvivier/sikumiut.git
+```
+```
 cd sikumiut
 ```
 

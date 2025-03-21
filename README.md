@@ -92,7 +92,21 @@ NOTES:
 
 ## How to Run A Jupyter Notebook
 
-Once Jupyter opens in your internet browser it should look like the following screenshot. Note that the
+Once Jupyter opens in your internet browser it should look like the following screenshot. 
+Note that there is an environment from the launcher called 'alaska', which is the environment
+we set up above. There is also a navigation bar on the left with folders and the notebooks
+are in these folders.
 
-![Screenshot 2025-03-20 at 1 33 42 PM](https://github.com/user-attachments/assets/c35cf701-f4c1-4f37-921f-f2aa8b70395f)
+![Jupyter_home](https://github.com/user-attachments/assets/f6fdb21a-cd8e-4bbb-aca6-2f9c89524da0)
 
+Double click on the 'cesm_activities' folder and then open a notebook (*.ipynb files are Jupyter
+notebooks. Here we show one called 'Exercise_1_CESM1-LE.ipynb' as an example). 
+When you open a notebook be sure that you select 'alaska' if asked 
+to choose a kernel and that 'alaska' is shown in the upper right hand side of the notebook.
+To run cells of code you can either push the 'play' button at the top when a cell is highlighted, 
+or you can use the keys shift+enter to run the cell.
+
+![Jupyter_notebook](https://github.com/user-attachments/assets/ed704862-47d8-4020-96c2-1532a460f56d)
+
+
+Please let us know if you have questions!

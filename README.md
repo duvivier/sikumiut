@@ -64,10 +64,10 @@ mamba env create -f environment.yml
 ```
 
 6. The file browser in jupyter will use whatever directory you ran "jupyter lab" from as
-  the root directory. Be sure you're in the notebooks directory
+  the root directory. You should already be in the sikumiut directory and this should work fine.
 
 ```
-cd sikumiut/cesm_activities
+cd sikumiut
 ```
 
 6. Run jupyter by entering the following command. It should open a window in an internet browser.

@@ -7,44 +7,67 @@ Open a terminal program (terminal, iterm, etc.)
 
 1. Install miniconda: https://www.anaconda.com/docs/getting-started/miniconda/install
 
-   -- MacOS instructions (assuming "Apple Silicon": click apple menu and "About this Mac"
+  -  MacOS instructions (assuming "Apple Silicon": click apple menu and "About this Mac"
       to verify the chip is made by Apple; if made by Intel, go to website and follow the
       Intel directions... should just be a different Miniconda3-latest file)
+  - Say yes to prompts when asked during install
 
+```
    $ curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
+```
+```
    $ bash Miniconda3-latest-MacOSX-arm64.sh
-      - say yes to prompts when asked
+```
+```
    $ conda config --set auto_activate_base true
+```
+```
    $ conda config --add channels defaults
+```
+```
    $ conda config --add channels conda-forge
+```
+```
    $ conda config --set channel_priority strict
+```
+```
    $ rm -f Miniconda3-latest-MacOSX-arm64.sh
+```
 
-   -- Instructions for Windows and Linux are also available on the website
+  - Instructions for Windows and Linux are also available on the website
 
 2. Quit your terminal program and reopen it. It should now open in the (base) environment.
 
 3. In your (base) environment, install jupyter
 
+```
   $ conda install mamba jupyterlab
-     - say yes when prompted to proceed
+```
 
-4. If you have not already, clone this repository to your desktop. Then go to environment file
+4. If you have not already, clone this GitHub repository to your desktop. Then go to the directory that holds the environment file
+   
+```
+   $ cd sikumiut
+```
 
-   $ cd sikumiut/cesm_activities
+6. Install the (alaska) environment with
 
-5. Install the (alaska) environment with
-
+```
   (base) $ mamba env create -f environment.yml
+```
 
 6. The file browser in jupyter will use whatever directory you ran "jupyter lab" from as
   the root directory. Be sure you're in the notebooks directory
 
+```
   (base) $ cd sikumiut/cesm_activities
+```
 
 6. Run jupyter with
 
+```
   (base) $ jupyter lab
+```
 
 NOTES:
 

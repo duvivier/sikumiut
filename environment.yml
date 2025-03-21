@@ -8,4 +8,4 @@ dependencies:
   - pandas
   - numpy
   - xarray
-  - netcdf
+  - netcdf4

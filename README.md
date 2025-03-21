@@ -14,25 +14,25 @@ Open a terminal program (terminal, iterm, etc.)
   - Say yes to prompts when asked during install
 
 ```
-   curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
 ```
 ```
-   bash Miniconda3-latest-MacOSX-arm64.sh
+bash Miniconda3-latest-MacOSX-arm64.sh
 ```
 ```
-   conda config --set auto_activate_base true
+conda config --set auto_activate_base true
 ```
 ```
-   conda config --add channels defaults
+conda config --add channels defaults
 ```
 ```
-   conda config --add channels conda-forge
+conda config --add channels conda-forge
 ```
 ```
-   conda config --set channel_priority strict
+conda config --set channel_priority strict
 ```
 ```
-   rm -f Miniconda3-latest-MacOSX-arm64.sh
+rm -f Miniconda3-latest-MacOSX-arm64.sh
 ```
 
   - Instructions for Windows and Linux are also available on the website
@@ -42,26 +42,26 @@ Open a terminal program (terminal, iterm, etc.)
 3. In your (base) environment, install jupyter
 
 ```
-  $ conda install mamba jupyterlab
+conda install mamba jupyterlab
 ```
 
 4. If you have not already, clone this GitHub repository to your desktop. Then go to the directory that holds the environment file
    
 ```
-   $ cd sikumiut
+cd sikumiut
 ```
 
-6. Install the (alaska) environment with
+6. Install the (alaska) environment within the (base) environment
 
 ```
-  (base) $ mamba env create -f environment.yml
+mamba env create -f environment.yml
 ```
 
 6. The file browser in jupyter will use whatever directory you ran "jupyter lab" from as
   the root directory. Be sure you're in the notebooks directory
 
 ```
-  (base) $ cd sikumiut/cesm_activities
+cd sikumiut/cesm_activities
 ```
 
 6. Run jupyter by entering the following command. It should open a window in an internet browser.

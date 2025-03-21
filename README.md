@@ -71,9 +71,10 @@ cd sikumiut
 ```
 
 6. Run jupyter by entering the following command. It should open a window in an internet browser.
+   Make sure that your command line still says (base) at the start.
 
 ```
-  (base) $ jupyter lab
+jupyter lab
 ```
 
 NOTES:

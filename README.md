@@ -14,25 +14,25 @@ Open a terminal program (terminal, iterm, etc.)
   - Say yes to prompts when asked during install
 
 ```
-   $ curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
+   curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
 ```
 ```
-   $ bash Miniconda3-latest-MacOSX-arm64.sh
+   bash Miniconda3-latest-MacOSX-arm64.sh
 ```
 ```
-   $ conda config --set auto_activate_base true
+   conda config --set auto_activate_base true
 ```
 ```
-   $ conda config --add channels defaults
+   conda config --add channels defaults
 ```
 ```
-   $ conda config --add channels conda-forge
+   conda config --add channels conda-forge
 ```
 ```
-   $ conda config --set channel_priority strict
+   conda config --set channel_priority strict
 ```
 ```
-   $ rm -f Miniconda3-latest-MacOSX-arm64.sh
+   rm -f Miniconda3-latest-MacOSX-arm64.sh
 ```
 
   - Instructions for Windows and Linux are also available on the website

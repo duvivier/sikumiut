@@ -1,6 +1,7 @@
 # Sikumiut
 Classroom model activities for Sikumiut sea ice field school
 
+
 ## Installing Python and Jupyter Hub on  your laptop
 
 Open a terminal program (terminal, iterm, etc.)
@@ -63,7 +64,7 @@ Open a terminal program (terminal, iterm, etc.)
   (base) $ cd sikumiut/cesm_activities
 ```
 
-6. Run jupyter with
+6. Run jupyter by entering the following command. It should open a window in an internet browser.
 
 ```
   (base) $ jupyter lab
@@ -80,3 +81,11 @@ NOTES:
 
 * Since we added ipykernel to the (alaska) environment, it should be usable from jupyter
   even though jupyter was launched from the (base) environment
+
+
+## How to Run A Jupyter Notebook
+
+Once Jupyter opens in your internet browser it should look like the following screenshot. Note that the
+
+![Screenshot 2025-03-20 at 1 33 42 PM](https://github.com/user-attachments/assets/c35cf701-f4c1-4f37-921f-f2aa8b70395f)
+

@@ -57,20 +57,36 @@ git clone https://github.com/duvivier/sikumiut.git
 cd sikumiut
 ```
 
-6. Install the (alaska) environment within the (base) environment
+5. Install the (alaska) environment within the (base) environment
 
 ```
 mamba env create -f environment.yml
 ```
 
-6. The file browser in jupyter will use whatever directory you ran "jupyter lab" from as
+6. From the (base) environment, install (alaska) as an option for the kernel in your notebook.
+
+```
+conda activate alaska
+```
+It should now show (alaska) at the command line prompt instead of (base)
+```
+python -m ipykernel install --name  alaska --user
+```
+
+```
+conda deactivate
+```
+It should now show (base) at the command line prompt instead of (alaska)
+
+
+7. The file browser in jupyter will use whatever directory you ran "jupyter lab" from as
   the root directory. You should already be in the sikumiut directory and this should work fine.
 
 ```
 cd sikumiut
 ```
 
-6. Run jupyter by entering the following command. It should open a window in an internet browser.
+8. Run jupyter by entering the following command. It should open a window in an internet browser.
    Make sure that your command line still says (base) at the start.
 
 ```

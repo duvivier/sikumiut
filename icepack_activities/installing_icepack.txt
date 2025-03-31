@@ -3,6 +3,10 @@ How to Install Icepack on your laptop
 These instructions were taken from the CICE Consortium documentation:
 https://cice-consortium-icepack.readthedocs.io/en/main/user_guide/ug_running.html#porting-to-laptop-or-personal-computers
 
+0. Icepack has been run successfully on Linux, Mac, Windows Subsystem for Linux, and in Docker containers. 
+If you have access to any of those OS's, please follow the instructions below and let David know if you 
+run into any issues.
+
 1. You must install Miniconda. You should have already done this to install the python environment used
 for the other two activities. If not, follow those instructions.
 
@@ -10,4 +14,7 @@ for the other two activities. If not, follow those instructions.
 
 3. Create the Icepack directories and the conda environment following section 3.2.3.4
 
-4. Test that this worked following section 3.2.3.5 
+4. Test that this worked following section 3.2.3.5
+
+5. After confirming that the default test case works, go to Icepack_activities/Exercise_1_Elson_Icepack
+and follow the instructions there for running the Elson Icepack simulation.

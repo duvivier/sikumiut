@@ -10,6 +10,7 @@ data
 import os
 import xarray as xr
 import pandas as pd
+import numpy as np
 
 # Load mdf_toolkit
 # if this is first time running, go to the root of the mdf-toolkit directory
@@ -37,6 +38,53 @@ df_out['snowfall_rate'] = df_out['precip_rate']
 # Clip negative shortwave values
 df_out['BestEstimate_down_short_hemisp'][
     df_out.BestEstimate_down_short_hemisp < 0] = 0.0
+# Convert temperature to Kelvin
+df_out['Temp_Air'] += 273.15
+# Convert pressure from kPa to hPa
+df_out['press'] *= 10.0
+
+def calc_mix_ratio(temp, RHw, press):
+    """
+    Function for calculating mixing ratio from C. Cox
+
+    !!! Temperature must be in Kelvin !!!
+
+
+    Calculations based on Appendix B of the PTU/HMT manual to be mathematically consistent with the
+    derivations in the on onboard electronics. Checked against Ola's code and found acceptable
+    agreement (<0.1% in MR). RHi calculation is then made following Hyland & Wexler (1983), which
+    yields slightly higher (<1%) compared a different method of Ola's
+    """
+    
+    # calculate saturation vapor pressure (Pws) using two equations sets, Wexler (1976) eq 5 & coefficients
+    c0    = 0.4931358
+    c1    = -0.46094296*1e-2
+    c2    = 0.13746454*1e-4
+    c3    = -0.12743214*1e-7
+    omega = temp - ( c0*temp**0 + c1*temp**1 + c2*temp**2 + c3*temp**3 )
+
+    # eq 6 & coefficients
+    bm1 = -0.58002206*1e4
+    b0  = 0.13914993*1e1
+    b1  = -0.48640239*1e-1
+    b2  = 0.41764768*1e-4
+    b3  = -0.14452093*1e-7
+    b4  = 6.5459673
+    Pws = np.exp( ( bm1*omega**-1 + b0*omega**0 + b1*omega**1 + b2*omega**2 + 
+                   b3*omega**3 ) + b4*np.log(omega) ) # [Pa]
+
+    Pw = RHw*Pws/100 # # actual vapor pressure (Pw), eq. 7, [Pa]
+
+    x = 1000*0.622*Pw/((press*100)-Pw) # mixing ratio by weight (eq 2), [g/kg]
+
+    return x
+
+# Create mixing ratio and specific humidity columns
+df_out['mixing_ratio'] = calc_mix_ratio(df_out.Temp_Air, df_out.rh,
+                                           df_out.press)
+df_out['specific_humidity'] = (df_out.mixing_ratio/1000)/(
+    1 + df_out.mixing_ratio/1000)
+
 
 # Specify which variables correspond to MDF var names
 var_map_dict = {'lat'   : 'lat',

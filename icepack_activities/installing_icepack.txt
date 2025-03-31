@@ -1,0 +1,13 @@
+How to Install Icepack on your laptop
+
+These instructions were taken from the CICE Consortium documentation:
+https://cice-consortium-icepack.readthedocs.io/en/main/user_guide/ug_running.html#porting-to-laptop-or-personal-computers
+
+1. You must install Miniconda. You should have already done this to install the python environment used
+for the other two activities. If not, follow those instructions.
+
+2. Initialize your shell for use with conda. Follow the instructions at the website above to do this.
+
+3. Create the Icepack directories and the conda environment following section 3.2.3.4
+
+4. Test that this worked following section 3.2.3.5 

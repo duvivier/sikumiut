@@ -1,5 +1,5 @@
 # Sikumiut
-Classroom model activities for Sikumiut sea ice field school
+Classroom model activities for Sikumiut sea ice field school - April 2025
 
 
 ## Installing Python and Jupyter Hub on  your laptop

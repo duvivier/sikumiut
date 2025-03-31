@@ -1,6 +1,12 @@
-# Byte-compiled / optimized / DLL files
+# Ignore byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 
-# Jupyter notebook checkpoints
+# Ignore jupyter notebook checkpoints
 .ipynb_checkpoints
+
+# Ignore emacs backup files
+*~
+
+# Ignore macOS cache files
+.DS_Store

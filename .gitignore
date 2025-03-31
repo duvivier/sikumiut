@@ -1,0 +1,8 @@
+# Ignore emacs backup files
+*~
+
+# Ignore python checkpoint files
+cesm_activities/.ipynb_checkpoints/
+
+# Ignore macOS cache files
+.DS_Store

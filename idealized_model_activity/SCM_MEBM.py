@@ -34,12 +34,23 @@ def saturation_specific_humidity(T,Ps):
 
 def model(grid, T, F = 0, sea_ice_albedo = 'on', sea_ice_thermodynamics = 'on'):
     """
-    ...
+    An idealized climate model that couples a diffusive moist energy balance model to a single-column model of sea ice.
     
     Input:
+ 
+    grid                   [ spatial grid and timestepping array ] 
+    T                      [ initial condition profile of surface temperature --- °C ]
+    F                      [ value of radiative forcing --- W / m^2 ]
+    sea_ice_albedo         [ on/off switch for the albedo of sea ice ]
+    sea_ice_thermodynamics [ on/off switch for the thermodynamics of sea ice ]
     
     Output:
-    
+
+    time                   [ 1-D (time) array of time values for the last year ]
+    Ts_output              [ 2-D (lat/time) array of surface temperature values for the last year of the simulation --- °C ]
+    Hi_output              [ 2-D (lat/time) array of sea ice thickness values for the last year of the simulation --- m ]
+    Sw_output              [ 2-D (lat/time) array of absorbed shortwave radiation for the last year of the simulation --- W / m^2 ]
+
     """
 
     # --- parameters ---
@@ -113,7 +124,7 @@ def model(grid, T, F = 0, sea_ice_albedo = 'on', sea_ice_thermodynamics = 'on'):
     # create output arrays
     Es_output = np.zeros((n,nt)) 
     Ts_output = np.zeros((n,nt))
-    ASR_output = np.zeros((n,nt))
+    Sw_output = np.zeros((n,nt))
     time = np.linspace(0,1,nt)
 
     # initial conditions
@@ -144,7 +155,7 @@ def model(grid, T, F = 0, sea_ice_albedo = 'on', sea_ice_thermodynamics = 'on'):
             if years == (dur-1): 
                 Es_output[:,i] = E
                 Ts_output[:,i] = T
-                ASR_output[:,i] = alpha*S[i,:]
+                Sw_output[:,i] = alpha*S[i,:]
 
             T = E/cw*(E>=0)+T0*(E<0)*(T0<0)
             
@@ -164,11 +175,14 @@ def model(grid, T, F = 0, sea_ice_albedo = 'on', sea_ice_thermodynamics = 'on'):
                 Tg = np.linalg.solve(kappa,
                                Tg + rhs1 + dt_tau*(E/cw) )
                 
-    Hi_output = -Es_output/Lf*(Es_output<0)
-
-
+    if sea_ice_thermodynamics == 'on':
+        Hi_output = -Es_output/Lf*(Es_output<0)
+    else:
+        Hi_output = Sw_output.copy()
+        Hi_output[:,:] = 0
+        
     print(f'Global-mean surface temperature = {np.round(np.mean(Ts_output, axis=(0,1)),1)} °C')
     print(f'Equator-to-pole surface temperature difference = {np.round(np.ptp(np.mean(Ts_output, axis=1)),1)} °C')
-    print(f'Global-mean top-of-atmosphere energy imbalance = {np.round(np.mean(ASR_output, axis=(0,1)) - A - B*np.mean(Ts_output, axis=(0,1)),1)} W m^{-2}')
+    print(f'Global-mean top-of-atmosphere energy imbalance = {np.round(np.mean(Sw_output, axis=(0,1)) - A - B*np.mean(Ts_output, axis=(0,1)),1)} W m^{-2}')
 
-    return time, Es_output, Ts_output, Hi_output, ASR_output
+    return time, Ts_output, Hi_output, Sw_output

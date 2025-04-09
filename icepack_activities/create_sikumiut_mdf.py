@@ -20,7 +20,7 @@ from mdftoolkit.MDF_toolkit import MDF_toolkit as MDF
 
 ## Load preprocessed NSA QCRAD data
 data_in_path = os.path.join('~', 'data', 'sikumiut')
-filename = 'nsaqcrad1longC1.cl.subset.20241001_20250325.nc'
+filename = 'nsaqcrad1longC1.cl.subset.20241001_20250405.nc'
 ds_in = xr.open_dataset(os.path.join(data_in_path, filename))
 
 # Data Citation:
@@ -122,6 +122,48 @@ global_atts = {
 MDF_out.update_global_atts(global_atts)  
 
 modf_df = MDF.map_vars_to_mdf(df_out, var_map_dict, drop=True)
+MDF_out.add_data_timeseries(modf_df, cadence="time60")
+MDF_out.write_files(output_dir=os.path.join(os.getcwd(), 'data/'),
+                    fname_only_underscores=True)
+
+### Below here is for creating the pseudo-precipitation forcing to best match
+# the observed 5 (ish) cm snow depth on the ice
+# As a simple way of doing this, let's zero out all precip
+# before Nov. 22 and after Dec. 22
+df_out_ns = df_out.copy(deep=True)
+pr_start = "2024-11-22"
+pr_end = "2024-12-22"
+df_out_ns['precip_rate'].loc[:pr_start] = 0.0
+df_out_ns['precip_rate'].loc[pr_end:] = 0.0
+df_out_ns['snowfall_rate'].loc[:pr_start] = 0.0
+df_out_ns['snowfall_rate'].loc[pr_end:] = 0.0
+
+## Convert into MDF
+MDF_out = MDF(supersite_name='sikumiut_nearshore', verbose=True)
+global_atts = {
+    "title"                    : "Sikumiut Icepack atmospheric forcing",
+    "Conventions"              : "MDF, CF (where possible)",
+    "creator_name"             : "David Clemens-Sewall",
+    "creator_email"            : "davidclemenssewall@gmail.com",
+    "project"                  : "Sikumiut sea ice field school",
+    "summary"                  : "Hourly atmospheric forcing for Icepack from"+
+                                 " ARM measurements. Precipitation is only " +
+                                 "from Nov. 22 to Dec. 22 to approximate " +
+                                 "effects of wind-drive snow redistribution.",
+    "id"                       : "TBD",
+    "license"                  : "CC-0", 
+    "metadata_link"            : "TBD",
+    "references"               : cite,
+    "time_coverage_start"      : "{}".format(df_out_ns.index[0]),
+    "time_coverage_end"        : "{}".format(df_out_ns.index[-1]),
+    "naming_authority"         : "___", 
+    "standard_name_vocabulary" : "___", 
+    "keywords"                 : "surface energy budget, arctic, polar",
+    "calendar"                 : "standard",
+}
+MDF_out.update_global_atts(global_atts)  
+
+modf_df = MDF.map_vars_to_mdf(df_out_ns, var_map_dict, drop=True)
 MDF_out.add_data_timeseries(modf_df, cadence="time60")
 MDF_out.write_files(output_dir=os.path.join(os.getcwd(), 'data/'),
                     fname_only_underscores=True)

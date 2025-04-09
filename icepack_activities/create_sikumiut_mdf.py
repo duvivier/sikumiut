@@ -20,7 +20,7 @@ from mdftoolkit.MDF_toolkit import MDF_toolkit as MDF
 
 ## Load preprocessed NSA QCRAD data
 data_in_path = os.path.join('~', 'data', 'sikumiut')
-filename = 'nsaqcrad1longC1.cl.subset.20241001_20250325.nc'
+filename = 'nsaqcrad1longC1.cl.subset.20241001_20250405.nc'
 ds_in = xr.open_dataset(os.path.join(data_in_path, filename))
 
 # Data Citation:
@@ -129,8 +129,7 @@ MDF_out.write_files(output_dir=os.path.join(os.getcwd(), 'data/'),
 ### Below here is for creating the pseudo-precipitation forcing to best match
 # the observed 5 (ish) cm snow depth on the ice
 # As a simple way of doing this, let's zero out all precip
-# before Nov. 22 and after Dec. 22, but 1.5x the precip rates
-# for that period to account for sublimation
+# before Nov. 22 and after Dec. 22
 df_out_ns = df_out.copy(deep=True)
 pr_start = "2024-11-22"
 pr_end = "2024-12-22"
@@ -138,8 +137,6 @@ df_out_ns['precip_rate'].loc[:pr_start] = 0.0
 df_out_ns['precip_rate'].loc[pr_end:] = 0.0
 df_out_ns['snowfall_rate'].loc[:pr_start] = 0.0
 df_out_ns['snowfall_rate'].loc[pr_end:] = 0.0
-df_out_ns['precip_rate'] *= 1.5
-df_out_ns['snowfall_rate'] *= 1.5
 
 ## Convert into MDF
 MDF_out = MDF(supersite_name='sikumiut_nearshore', verbose=True)
